@@ -1,0 +1,8 @@
+{
+  "importMap": "import_map.json",
+  "fmt": {},
+  "tasks": {
+    "run": "deno run --allow-read --allow-write main.ts"
+  },
+  "compilerOptions": {}
+}
