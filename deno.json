@@ -2,7 +2,8 @@
   "importMap": "import_map.json",
   "fmt": {},
   "tasks": {
-    "run": "deno run --allow-read --allow-write main.ts"
+    "dump": "deno run --allow-read --allow-write dump.ts",
+    "load": "deno run --allow-read --allow-write load.ts && sqlite3 --init load.sql"
   },
   "compilerOptions": {
     "jsxImportSource": "react",
