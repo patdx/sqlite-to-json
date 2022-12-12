@@ -34,13 +34,21 @@ for (const table of tables) {
 }
 
 for (const table of tables) {
-  // const columns = db
-  //   .queryEntries<{ name: string }>(
-  //     `select name from pragma_table_info('${table.name}')`
-  //   )
-  //   .map((col) => col.name);
+  const columns = db.queryEntries<{ name: string; type: string }>(
+    `select name, type from pragma_table_info('${table.name}')`
+  );
+  // .map((col) => col.name);
 
-  const rows = db.queryEntries(`select * from '${table.name}'`);
+  console.log(columns);
+
+  const rows = db.queryEntries(
+    `select ${columns
+      // ignore blobs
+      // TODO: save blobs to separate files?
+      .filter((col) => col.type !== "BLOB")
+      .map((col) => col.name)
+      .join(", ")} from '${table.name}'`
+  );
 
   for (const row of rows) {
     target.push([table.name, row]);
