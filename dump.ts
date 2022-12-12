@@ -26,6 +26,7 @@ const tables = db
     sql: format(row.sql, {
       language: "sqlite",
       tabWidth: 0,
+      expressionWidth: 100000, // trick the formatter into inline mode
     })
       .replace(/\s+/g, " ")
       .trim(),
