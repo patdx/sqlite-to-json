@@ -1,5 +1,7 @@
 {
   "imports": {
-    "sqlite": "https://deno.land/x/sqlite@v3.7.0/mod.ts"
+    "sqlite": "https://deno.land/x/sqlite@v3.7.0/mod.ts",
+    "react": "https://esm.sh/react@18.2.0",
+    "react/": "https://esm.sh/react@18.2.0/"
   }
 }
