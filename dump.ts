@@ -1,4 +1,5 @@
 import { DB } from "sqlite";
+import { format } from "sql-formatter";
 
 const target: any[] = [];
 
@@ -21,11 +22,12 @@ const tables = db
   )
   .map((row) => ({
     ...row,
-    sql: row.sql
+    // normalize the create statements
+    sql: format(row.sql, {
+      language: "sqlite",
+      tabWidth: 0,
+    })
       .replace(/\s+/g, " ")
-      .replace(/\s*\(\s*/g, " (")
-      .replace(/\s*\)\s*/g, ") ")
-      .replace(/\s*\]\s*/g, "] ") // probably not a good idea in general, but helps for northwind db visually
       .trim(),
   }));
 
